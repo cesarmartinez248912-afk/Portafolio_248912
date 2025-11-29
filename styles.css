@@ -13,6 +13,8 @@
     --accent: #ffffff;
     --border: #2a2a2a;
     --hover-bg: #222222;
+    --gradient-1: #667eea;
+    --gradient-2: #764ba2;
 }
 
 body {
@@ -39,7 +41,7 @@ header {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--gradient-1) 0%, var(--gradient-2) 100%);
     margin: 0 auto 30px;
     display: flex;
     align-items: center;
@@ -65,16 +67,81 @@ h1 {
 
 .about {
     padding: 80px 0;
-    text-align: center;
     background: var(--bg-primary);
 }
 
-.about p {
-    max-width: 600px;
-    margin: 0 auto;
+.about-content {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    text-align: left;
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+.about-content p {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-content strong {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.skills-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.skill-category {
+    background: var(--bg-card);
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+    border-color: #3a3a3a;
+    transform: translateY(-5px);
+}
+
+.skill-category h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 20px;
+    color: var(--accent);
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tags span {
+    padding: 8px 16px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.skill-tags span:hover {
+    border-color: var(--gradient-1);
+    color: var(--gradient-1);
 }
 
 .projects {
@@ -92,7 +159,7 @@ h1 {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 40px;
     opacity: 0;
     animation: fadeIn 0.6s ease-in forwards;
@@ -106,18 +173,42 @@ h1 {
 
 .project-card {
     background: var(--bg-card);
-    padding: 40px 30px;
     border: 1px solid var(--border);
     transition: all 0.3s ease;
     cursor: default;
     border-radius: 8px;
+    overflow: hidden;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 40px rgba(0,0,0,0.5);
     border-color: #3a3a3a;
-    background: var(--hover-bg);
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+}
+
+.project-content {
+    padding: 30px;
 }
 
 .project-card h3 {
@@ -131,6 +222,7 @@ h1 {
     color: var(--text-secondary);
     margin-bottom: 20px;
     font-size: 0.95rem;
+    line-height: 1.6;
 }
 
 .tech-tags {
@@ -151,8 +243,8 @@ h1 {
 }
 
 .tech-tag:hover {
-    border-color: #667eea;
-    color: #667eea;
+    border-color: var(--gradient-1);
+    color: var(--gradient-1);
 }
 
 .project-link {
@@ -180,7 +272,7 @@ h1 {
     width: 40px;
     height: 40px;
     border: 3px solid var(--border);
-    border-top-color: #667eea;
+    border-top-color: var(--gradient-1);
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin-bottom: 20px;
@@ -227,8 +319,8 @@ footer {
 }
 
 .contact-link:hover {
-    border-color: #667eea;
-    color: #667eea;
+    border-color: var(--gradient-1);
+    color: var(--gradient-1);
     background: var(--bg-card);
 }
 
@@ -240,6 +332,14 @@ footer p {
 @media (max-width: 768px) {
     h1 {
         font-size: 2rem;
+    }
+
+    .about-content p {
+        font-size: 1rem;
+    }
+
+    .skills-section {
+        grid-template-columns: 1fr;
     }
 
     .projects-grid {

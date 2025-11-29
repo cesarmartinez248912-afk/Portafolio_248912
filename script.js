@@ -40,6 +40,12 @@ function mostrarProyectos(proyectos) {
     const container = document.getElementById('projectsContainer');
     
     const projectsHTML = proyectos.map(proyecto => {
+        const imageHTML = proyecto.images && proyecto.images.length > 0
+            ? `<div class="project-image">
+                <img src="${proyecto.images[0]}" alt="${proyecto.title}" loading="lazy" onerror="this.parentElement.style.display='none'">
+               </div>`
+            : '';
+
         const techTags = proyecto.technologies && proyecto.technologies.length > 0
             ? `<div class="tech-tags">
                 ${proyecto.technologies.map(tech => 
@@ -54,16 +60,18 @@ function mostrarProyectos(proyectos) {
 
         return `
             <div class="project-card">
-                <h3>${proyecto.title}</h3>
-                <p>${proyecto.description}</p>
-                ${techTags}
-                ${repoLink}
+                ${imageHTML}
+                <div class="project-content">
+                    <h3>${proyecto.title}</h3>
+                    <p>${proyecto.description}</p>
+                    ${techTags}
+                    ${repoLink}
+                </div>
             </div>
         `;
     }).join('');
 
     container.innerHTML = `<div class="projects-grid">${projectsHTML}</div>`;
 }
-
 
 document.addEventListener('DOMContentLoaded', cargarProyectos);
